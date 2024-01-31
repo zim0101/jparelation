@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:insert="layout/header"></th:block>
+<body>
+<div class="container-sm">
+    <br>
+    <h3>Products</h3>
+    <br>
+    <div class="table-responsive">
+        <table class="table" id="productTable">
+            <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Category</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="product : ${productList}">
+                <td th:text="${product.name}"></td>
+                <td th:text="${product.category.name}"></td>
+                <td >
+                    <div class="d-flex flex-row">
+                        <div class="p-2">
+                            <a class="btn btn-outline-info"
+                               th:href="@{'/products/{id}/edit'(id=${product.id})}">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<th:block th:insert="~{layout/js_urls}"></th:block>
+</body>
+</html>
